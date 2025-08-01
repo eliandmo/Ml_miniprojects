@@ -6,4 +6,4 @@ root: intro
 chapters:
 - file: KNN
 - file: mi_notebook
-- file: Pruebas
+- file: Análisis Exploratorio de Datos
