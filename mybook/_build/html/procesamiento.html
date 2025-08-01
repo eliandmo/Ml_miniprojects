@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Preprocesamiento &#8212; My sample book</title>
+    <title>Análisis Exploratorio de los Datos (EDA) &#8212; My sample book</title>
   
   
   
@@ -367,7 +367,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Preprocesamiento</h1>
+    <h1>Análisis Exploratorio de los Datos (EDA)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -377,7 +377,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias"><strong>Librerias</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-librerias">📦 <strong>Importación de Librerías</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-la-base-de-datos"><strong>📂 Cargar la base de datos</strong></a></li>
 </ul>
             </nav>
         </div>
@@ -389,17 +390,93 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="preprocesamiento">
-<h1><strong>Preprocesamiento</strong><a class="headerlink" href="#preprocesamiento" title="Link to this heading">#</a></h1>
-<p>En esta parte del pryecto se pretende mostrar los datos crudos</p>
-<section id="librerias">
-<h2><strong>Librerias</strong><a class="headerlink" href="#librerias" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-exploratorio-de-los-datos-eda">
+<h1><strong>Análisis Exploratorio de los Datos (EDA)</strong><a class="headerlink" href="#analisis-exploratorio-de-los-datos-eda" title="Link to this heading">#</a></h1>
+<p>En esta sección se tiene como objetivo realizar un análisis exploratorio de un conjunto de datos cargado en formato CSV. El propósito es comprender mejor las variables disponibles, identificar patrones generales, detectar valores atípicos y preparar el terreno para análisis posteriores.</p>
+<p>Trabajaremos paso a paso a través de la carga, inspección, limpieza y visualización de los datos, utilizando Python y bibliotecas como <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, y <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>.</p>
+<section id="importacion-de-librerias">
+<h2>📦 <strong>Importación de Librerías</strong><a class="headerlink" href="#importacion-de-librerias" title="Link to this heading">#</a></h2>
+<p>En esta sección cargamos las bibliotecas necesarias para la manipulación y visualización de datos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importamos las librerías básicas necesarias para el análisis</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="c1"># Establecemos el estilo de los gráficos</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;pastel&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</div>
+</section>
+<section id="cargar-la-base-de-datos">
+<h2><strong>📂 Cargar la base de datos</strong><a class="headerlink" href="#cargar-la-base-de-datos" title="Link to this heading">#</a></h2>
+<p>Aquí leemos el archivo CSV que contiene los datos. Es importante verificar que se cargue correctamente y revisar las primeras filas para asegurarnos de que la estructura sea la esperada.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cargamos el archivo CSV que contiene los datos</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>  <span class="c1"># Asegúrate de que el archivo esté en la misma carpeta del notebook</span>
+
+<span class="c1"># Mostramos las dimensiones del dataset</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dimensiones del dataset:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Mostramos las primeras filas del conjunto de datos</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimensiones del dataset: (4424, 1)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Marital status;Application mode;Application order;Course;"Daytime/evening attendance\t";Previous qualification;Previous qualification (grade);Nacionality;Mother's qualification;Father's qualification;Mother's occupation;Father's occupation;Admission grade;Displaced;Educational special needs;Debtor;Tuition fees up to date;Gender;Scholarship holder;Age at enrollment;International;Curricular units 1st sem (credited);Curricular units 1st sem (enrolled);Curricular units 1st sem (evaluations);Curricular units 1st sem (approved);Curricular units 1st sem (grade);Curricular units 1st sem (without evaluations);Curricular units 2nd sem (credited);Curricular units 2nd sem (enrolled);Curricular units 2nd sem (evaluations);Curricular units 2nd sem (approved);Curricular units 2nd sem (grade);Curricular units 2nd sem (without evaluations);Unemployment rate;Inflation rate;GDP;Target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1;17;5;171;1;1;122.0;1;19;12;5;9;127.3;1;0;0;1...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1;15;1;9254;1;1;160.0;1;1;3;3;3;142.5;1;0;0;0;...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1;1;5;9070;1;1;122.0;1;37;37;9;9;124.8;1;0;0;0...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1;17;2;9773;1;1;122.0;1;38;37;5;3;119.6;1;0;0;...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2;39;1;8014;0;1;100.0;1;37;38;9;9;141.5;0;0;0;...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>
@@ -450,7 +527,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias"><strong>Librerias</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-librerias">📦 <strong>Importación de Librerías</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-la-base-de-datos"><strong>📂 Cargar la base de datos</strong></a></li>
 </ul>
   </nav></div>
 
