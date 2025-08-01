@@ -574,29 +574,300 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comprobamos si hay valores faltantes</span>
-<span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">X</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
 <span class="c1"># Tipos de variables</span>
-<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">X</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 
 <span class="c1"># Estadísticas básicas de variables numéricas</span>
-<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="n">X</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Comprobamos si hay valores faltantes</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Tipos de variables</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-
-<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 4424 entries, 0 to 4423
+Data columns (total 36 columns):
+ #   Column                                          Non-Null Count  Dtype  
+---  ------                                          --------------  -----  
+ 0   Marital Status                                  4424 non-null   int64  
+ 1   Application mode                                4424 non-null   int64  
+ 2   Application order                               4424 non-null   int64  
+ 3   Course                                          4424 non-null   int64  
+ 4   Daytime/evening attendance                      4424 non-null   int64  
+ 5   Previous qualification                          4424 non-null   int64  
+ 6   Previous qualification (grade)                  4424 non-null   float64
+ 7   Nacionality                                     4424 non-null   int64  
+ 8   Mother&#39;s qualification                          4424 non-null   int64  
+ 9   Father&#39;s qualification                          4424 non-null   int64  
+ 10  Mother&#39;s occupation                             4424 non-null   int64  
+ 11  Father&#39;s occupation                             4424 non-null   int64  
+ 12  Admission grade                                 4424 non-null   float64
+ 13  Displaced                                       4424 non-null   int64  
+ 14  Educational special needs                       4424 non-null   int64  
+ 15  Debtor                                          4424 non-null   int64  
+ 16  Tuition fees up to date                         4424 non-null   int64  
+ 17  Gender                                          4424 non-null   int64  
+ 18  Scholarship holder                              4424 non-null   int64  
+ 19  Age at enrollment                               4424 non-null   int64  
+ 20  International                                   4424 non-null   int64  
+ 21  Curricular units 1st sem (credited)             4424 non-null   int64  
+ 22  Curricular units 1st sem (enrolled)             4424 non-null   int64  
+ 23  Curricular units 1st sem (evaluations)          4424 non-null   int64  
+ 24  Curricular units 1st sem (approved)             4424 non-null   int64  
+ 25  Curricular units 1st sem (grade)                4424 non-null   float64
+ 26  Curricular units 1st sem (without evaluations)  4424 non-null   int64  
+ 27  Curricular units 2nd sem (credited)             4424 non-null   int64  
+ 28  Curricular units 2nd sem (enrolled)             4424 non-null   int64  
+ 29  Curricular units 2nd sem (evaluations)          4424 non-null   int64  
+ 30  Curricular units 2nd sem (approved)             4424 non-null   int64  
+ 31  Curricular units 2nd sem (grade)                4424 non-null   float64
+ 32  Curricular units 2nd sem (without evaluations)  4424 non-null   int64  
+ 33  Unemployment rate                               4424 non-null   float64
+ 34  Inflation rate                                  4424 non-null   float64
+ 35  GDP                                             4424 non-null   float64
+dtypes: float64(7), int64(29)
+memory usage: 1.2 MB
 </pre></div>
 </div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Marital Status</th>
+      <th>Application mode</th>
+      <th>Application order</th>
+      <th>Course</th>
+      <th>Daytime/evening attendance</th>
+      <th>Previous qualification</th>
+      <th>Previous qualification (grade)</th>
+      <th>Nacionality</th>
+      <th>Mother's qualification</th>
+      <th>Father's qualification</th>
+      <th>...</th>
+      <th>Curricular units 1st sem (without evaluations)</th>
+      <th>Curricular units 2nd sem (credited)</th>
+      <th>Curricular units 2nd sem (enrolled)</th>
+      <th>Curricular units 2nd sem (evaluations)</th>
+      <th>Curricular units 2nd sem (approved)</th>
+      <th>Curricular units 2nd sem (grade)</th>
+      <th>Curricular units 2nd sem (without evaluations)</th>
+      <th>Unemployment rate</th>
+      <th>Inflation rate</th>
+      <th>GDP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>...</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1.178571</td>
+      <td>18.669078</td>
+      <td>1.727848</td>
+      <td>8856.642631</td>
+      <td>0.890823</td>
+      <td>4.577758</td>
+      <td>132.613314</td>
+      <td>1.873192</td>
+      <td>19.561935</td>
+      <td>22.275316</td>
+      <td>...</td>
+      <td>0.137658</td>
+      <td>0.541817</td>
+      <td>6.232143</td>
+      <td>8.063291</td>
+      <td>4.435805</td>
+      <td>10.230206</td>
+      <td>0.150316</td>
+      <td>11.566139</td>
+      <td>1.228029</td>
+      <td>0.001969</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.605747</td>
+      <td>17.484682</td>
+      <td>1.313793</td>
+      <td>2063.566416</td>
+      <td>0.311897</td>
+      <td>10.216592</td>
+      <td>13.188332</td>
+      <td>6.914514</td>
+      <td>15.603186</td>
+      <td>15.343108</td>
+      <td>...</td>
+      <td>0.690880</td>
+      <td>1.918546</td>
+      <td>2.195951</td>
+      <td>3.947951</td>
+      <td>3.014764</td>
+      <td>5.210808</td>
+      <td>0.753774</td>
+      <td>2.663850</td>
+      <td>1.382711</td>
+      <td>2.269935</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>33.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>95.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>7.600000</td>
+      <td>-0.800000</td>
+      <td>-4.060000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>9085.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>125.000000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>3.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>5.000000</td>
+      <td>6.000000</td>
+      <td>2.000000</td>
+      <td>10.750000</td>
+      <td>0.000000</td>
+      <td>9.400000</td>
+      <td>0.300000</td>
+      <td>-1.700000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1.000000</td>
+      <td>17.000000</td>
+      <td>1.000000</td>
+      <td>9238.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>133.100000</td>
+      <td>1.000000</td>
+      <td>19.000000</td>
+      <td>19.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>6.000000</td>
+      <td>8.000000</td>
+      <td>5.000000</td>
+      <td>12.200000</td>
+      <td>0.000000</td>
+      <td>11.100000</td>
+      <td>1.400000</td>
+      <td>0.320000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.000000</td>
+      <td>39.000000</td>
+      <td>2.000000</td>
+      <td>9556.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>140.000000</td>
+      <td>1.000000</td>
+      <td>37.000000</td>
+      <td>37.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>7.000000</td>
+      <td>10.000000</td>
+      <td>6.000000</td>
+      <td>13.333333</td>
+      <td>0.000000</td>
+      <td>13.900000</td>
+      <td>2.600000</td>
+      <td>1.790000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>6.000000</td>
+      <td>57.000000</td>
+      <td>9.000000</td>
+      <td>9991.000000</td>
+      <td>1.000000</td>
+      <td>43.000000</td>
+      <td>190.000000</td>
+      <td>109.000000</td>
+      <td>44.000000</td>
+      <td>44.000000</td>
+      <td>...</td>
+      <td>12.000000</td>
+      <td>19.000000</td>
+      <td>23.000000</td>
+      <td>33.000000</td>
+      <td>20.000000</td>
+      <td>18.571429</td>
+      <td>12.000000</td>
+      <td>16.200000</td>
+      <td>3.700000</td>
+      <td>3.510000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 36 columns</p>
+</div></div></div>
 </div>
 <section id="descripcion-estadistica-de-las-variables">
 <h3><strong>Descripción Estadística de las variables</strong><a class="headerlink" href="#descripcion-estadistica-de-las-variables" title="Link to this heading">#</a></h3>
