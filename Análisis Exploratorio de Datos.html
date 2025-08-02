@@ -378,10 +378,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-librerias">📦 <strong>Importación de Librerías</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-la-base-de-datos"><strong>📂 Cargar la base de datos</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploracion-general-del-dataset"><strong>🔍 Exploración general del dataset</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-estadistica-de-las-variables"><strong>Descripción Estadística de las variables</strong></a></li>
-</ul>
-</li>
 </ul>
             </nav>
         </div>
@@ -395,7 +391,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="analisis-exploratorio-de-los-datos-eda">
 <h1><strong>Análisis Exploratorio de los Datos (EDA)</strong><a class="headerlink" href="#analisis-exploratorio-de-los-datos-eda" title="Link to this heading">#</a></h1>
-<p>En esta sección se tiene como objetivo realizar un análisis exploratorio de un conjunto de datos cargado en formato CSV. El propósito es comprender mejor las variables disponibles, identificar patrones generales, detectar valores atípicos y preparar el terreno para análisis posteriores.</p>
+<p>En esta sección se tiene como objetivo realizar un análisis exploratorio del conjunto de datos. El propósito es comprender mejor las variables disponibles, identificar patrones generales, detectar valores atípicos y preparar el terreno para análisis posteriores.</p>
 <p>Trabajaremos paso a paso a través de la carga, inspección, limpieza y visualización de los datos, utilizando Python y bibliotecas como <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, y <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>.</p>
 <section id="importacion-de-librerias">
 <h2>📦 <strong>Importación de Librerías</strong><a class="headerlink" href="#importacion-de-librerias" title="Link to this heading">#</a></h2>
@@ -569,194 +565,6 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="exploracion-general-del-dataset">
-<h2><strong>🔍 Exploración general del dataset</strong><a class="headerlink" href="#exploracion-general-del-dataset" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comprobamos si hay valores faltantes</span>
-<span class="n">X</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-
-<span class="c1"># Tipos de variables</span>
-<span class="n">X</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 4424 entries, 0 to 4423
-Data columns (total 36 columns):
- #   Column                                          Non-Null Count  Dtype  
----  ------                                          --------------  -----  
- 0   Marital Status                                  4424 non-null   int64  
- 1   Application mode                                4424 non-null   int64  
- 2   Application order                               4424 non-null   int64  
- 3   Course                                          4424 non-null   int64  
- 4   Daytime/evening attendance                      4424 non-null   int64  
- 5   Previous qualification                          4424 non-null   int64  
- 6   Previous qualification (grade)                  4424 non-null   float64
- 7   Nacionality                                     4424 non-null   int64  
- 8   Mother&#39;s qualification                          4424 non-null   int64  
- 9   Father&#39;s qualification                          4424 non-null   int64  
- 10  Mother&#39;s occupation                             4424 non-null   int64  
- 11  Father&#39;s occupation                             4424 non-null   int64  
- 12  Admission grade                                 4424 non-null   float64
- 13  Displaced                                       4424 non-null   int64  
- 14  Educational special needs                       4424 non-null   int64  
- 15  Debtor                                          4424 non-null   int64  
- 16  Tuition fees up to date                         4424 non-null   int64  
- 17  Gender                                          4424 non-null   int64  
- 18  Scholarship holder                              4424 non-null   int64  
- 19  Age at enrollment                               4424 non-null   int64  
- 20  International                                   4424 non-null   int64  
- 21  Curricular units 1st sem (credited)             4424 non-null   int64  
- 22  Curricular units 1st sem (enrolled)             4424 non-null   int64  
- 23  Curricular units 1st sem (evaluations)          4424 non-null   int64  
- 24  Curricular units 1st sem (approved)             4424 non-null   int64  
- 25  Curricular units 1st sem (grade)                4424 non-null   float64
- 26  Curricular units 1st sem (without evaluations)  4424 non-null   int64  
- 27  Curricular units 2nd sem (credited)             4424 non-null   int64  
- 28  Curricular units 2nd sem (enrolled)             4424 non-null   int64  
- 29  Curricular units 2nd sem (evaluations)          4424 non-null   int64  
- 30  Curricular units 2nd sem (approved)             4424 non-null   int64  
- 31  Curricular units 2nd sem (grade)                4424 non-null   float64
- 32  Curricular units 2nd sem (without evaluations)  4424 non-null   int64  
- 33  Unemployment rate                               4424 non-null   float64
- 34  Inflation rate                                  4424 non-null   float64
- 35  GDP                                             4424 non-null   float64
-dtypes: float64(7), int64(29)
-memory usage: 1.2 MB
-</pre></div>
-</div>
-</div>
-</div>
-<section id="descripcion-estadistica-de-las-variables">
-<h3><strong>Descripción Estadística de las variables</strong><a class="headerlink" href="#descripcion-estadistica-de-las-variables" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Estadísticas descriptivas de las variables numéricas:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estadísticas descriptivas de las variables numéricas:
-       Marital Status  Application mode  Application order       Course  \
-count     4424.000000       4424.000000        4424.000000  4424.000000   
-mean         1.178571         18.669078           1.727848  8856.642631   
-std          0.605747         17.484682           1.313793  2063.566416   
-min          1.000000          1.000000           0.000000    33.000000   
-25%          1.000000          1.000000           1.000000  9085.000000   
-50%          1.000000         17.000000           1.000000  9238.000000   
-75%          1.000000         39.000000           2.000000  9556.000000   
-max          6.000000         57.000000           9.000000  9991.000000   
-
-       Daytime/evening attendance  Previous qualification  \
-count                 4424.000000             4424.000000   
-mean                     0.890823                4.577758   
-std                      0.311897               10.216592   
-min                      0.000000                1.000000   
-25%                      1.000000                1.000000   
-50%                      1.000000                1.000000   
-75%                      1.000000                1.000000   
-max                      1.000000               43.000000   
-
-       Previous qualification (grade)  Nacionality  Mother&#39;s qualification  \
-count                     4424.000000  4424.000000             4424.000000   
-mean                       132.613314     1.873192               19.561935   
-std                         13.188332     6.914514               15.603186   
-min                         95.000000     1.000000                1.000000   
-25%                        125.000000     1.000000                2.000000   
-50%                        133.100000     1.000000               19.000000   
-75%                        140.000000     1.000000               37.000000   
-max                        190.000000   109.000000               44.000000   
-
-       Father&#39;s qualification  ...  \
-count             4424.000000  ...   
-mean                22.275316  ...   
-std                 15.343108  ...   
-min                  1.000000  ...   
-25%                  3.000000  ...   
-50%                 19.000000  ...   
-75%                 37.000000  ...   
-max                 44.000000  ...   
-
-       Curricular units 1st sem (without evaluations)  \
-count                                     4424.000000   
-mean                                         0.137658   
-std                                          0.690880   
-min                                          0.000000   
-25%                                          0.000000   
-50%                                          0.000000   
-75%                                          0.000000   
-max                                         12.000000   
-
-       Curricular units 2nd sem (credited)  \
-count                          4424.000000   
-mean                              0.541817   
-std                               1.918546   
-min                               0.000000   
-25%                               0.000000   
-50%                               0.000000   
-75%                               0.000000   
-max                              19.000000   
-
-       Curricular units 2nd sem (enrolled)  \
-count                          4424.000000   
-mean                              6.232143   
-std                               2.195951   
-min                               0.000000   
-25%                               5.000000   
-50%                               6.000000   
-75%                               7.000000   
-max                              23.000000   
-
-       Curricular units 2nd sem (evaluations)  \
-count                             4424.000000   
-mean                                 8.063291   
-std                                  3.947951   
-min                                  0.000000   
-25%                                  6.000000   
-50%                                  8.000000   
-75%                                 10.000000   
-max                                 33.000000   
-
-       Curricular units 2nd sem (approved)  Curricular units 2nd sem (grade)  \
-count                          4424.000000                       4424.000000   
-mean                              4.435805                         10.230206   
-std                               3.014764                          5.210808   
-min                               0.000000                          0.000000   
-25%                               2.000000                         10.750000   
-50%                               5.000000                         12.200000   
-75%                               6.000000                         13.333333   
-max                              20.000000                         18.571429   
-
-       Curricular units 2nd sem (without evaluations)  Unemployment rate  \
-count                                     4424.000000        4424.000000   
-mean                                         0.150316          11.566139   
-std                                          0.753774           2.663850   
-min                                          0.000000           7.600000   
-25%                                          0.000000           9.400000   
-50%                                          0.000000          11.100000   
-75%                                          0.000000          13.900000   
-max                                         12.000000          16.200000   
-
-       Inflation rate          GDP  
-count     4424.000000  4424.000000  
-mean         1.228029     0.001969  
-std          1.382711     2.269935  
-min         -0.800000    -4.060000  
-25%          0.300000    -1.700000  
-50%          1.400000     0.320000  
-75%          2.600000     1.790000  
-max          3.700000     3.510000  
-
-[8 rows x 36 columns]
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -816,10 +624,6 @@ max          3.700000     3.510000
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-librerias">📦 <strong>Importación de Librerías</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-la-base-de-datos"><strong>📂 Cargar la base de datos</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploracion-general-del-dataset"><strong>🔍 Exploración general del dataset</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-estadistica-de-las-variables"><strong>Descripción Estadística de las variables</strong></a></li>
-</ul>
-</li>
 </ul>
   </nav></div>
 
