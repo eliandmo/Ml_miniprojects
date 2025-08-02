@@ -946,7 +946,12 @@ document.write(`
 <h3><strong>Distribución de Variable Objetivo (Clasificación)</strong><a class="headerlink" href="#distribucion-de-variable-objetivo-clasificacion" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar filas con valores nulos si es necesario</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Curricular units 1st sem (grade)&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Curricular units 2nd sem (grade)&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estadísticas del promedio académico:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
 <span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">,</span> <span class="s1">&#39;Target&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
 <span class="c1">#Visualización</span>
@@ -961,28 +966,22 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">~\AppData\Local\Temp\ipykernel_14796\36011268.py</span> in <span class="ni">?</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Eliminar filas con valores nulos si es necesario</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">,</span> <span class="s1">&#39;Target&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1">#Visualización</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-
-<span class="nn">c:\Users\Elian\miniconda3\Lib\site-packages\pandas\core\frame.py</span> in <span class="ni">?</span><span class="nt">(self, axis, how, thresh, subset, inplace, ignore_index)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6673</span>             <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis</span><span class="p">(</span><span class="n">agg_axis</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6674</span>             <span class="n">indices</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_indexer_for</span><span class="p">(</span><span class="n">subset</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6675</span>             <span class="n">check</span> <span class="o">=</span> <span class="n">indices</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
-<span class="g g-Whitespace">   </span><span class="mi">6676</span>             <span class="k">if</span> <span class="n">check</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-<span class="ne">-&gt; </span><span class="mi">6677</span>                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">subset</span><span class="p">)[</span><span class="n">check</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
-<span class="g g-Whitespace">   </span><span class="mi">6678</span>             <span class="n">agg_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">agg_axis</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6679</span> 
-<span class="g g-Whitespace">   </span><span class="mi">6680</span>         <span class="k">if</span> <span class="n">thresh</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">lib</span><span class="o">.</span><span class="n">no_default</span><span class="p">:</span>
-
-<span class="ne">KeyError</span>: [&#39;Average_grade&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estadísticas del promedio académico:
+count    4424.000000
+mean       10.435514
+std         4.818530
+min         0.000000
+25%        11.000000
+50%        12.250000
+75%        13.266667
+max        18.283654
+Name: Average_grade, dtype: float64
 </pre></div>
 </div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Cantidad de Estudiantes&#39;)
+</pre></div>
+</div>
+<img alt="_images/7efa9a213f62d4682b3b62587f8c6eae602dc7523557c248368a31e298df4eba.png" src="_images/7efa9a213f62d4682b3b62587f8c6eae602dc7523557c248368a31e298df4eba.png" />
 </div>
 </div>
 </section>
@@ -1002,7 +1001,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(10.535513648948914, 1204.875, &#39;Media&#39;)
 </pre></div>
 </div>
-<img alt="_images/e886d772738834dd3bae656856e679082938b59fc9cde54169c9da3634859048.png" src="_images/e886d772738834dd3bae656856e679082938b59fc9cde54169c9da3634859048.png" />
+<img alt="_images/88ba3d1303f37b23b7700ee0f0123268625127d3c3d67d73de8f96a26b2b386d.png" src="_images/88ba3d1303f37b23b7700ee0f0123268625127d3c3d67d73de8f96a26b2b386d.png" />
 </div>
 </div>
 <section id="distribucion-por-semestre">
@@ -1020,10 +1019,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1e423c8de80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x22921d6d550&gt;
 </pre></div>
 </div>
-<img alt="_images/8624db4cb417c498503056ac4855879c7e371bb84dc78c7ea77e718c9d429945.png" src="_images/8624db4cb417c498503056ac4855879c7e371bb84dc78c7ea77e718c9d429945.png" />
+<img alt="_images/ee08b9305020062fab668dd99105c639efd192f62f94cf8a2c7cb41938b88f8d.png" src="_images/ee08b9305020062fab668dd99105c639efd192f62f94cf8a2c7cb41938b88f8d.png" />
 </div>
 </div>
 </section>
@@ -1045,14 +1044,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Elian\AppData\Local\Temp\ipykernel_3764\4238463372.py:2: FutureWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Elian\AppData\Local\Temp\ipykernel_12812\4238463372.py:2: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
   sns.boxplot(data=df_clean, x=&#39;Target&#39;, y=&#39;Average_grade&#39;, palette=&#39;Set2&#39;,
 </pre></div>
 </div>
-<img alt="_images/ba9fbb5418c17ec468fd2922fc06a6403599a14c0fb326e9fda1f0b23863ee90.png" src="_images/ba9fbb5418c17ec468fd2922fc06a6403599a14c0fb326e9fda1f0b23863ee90.png" />
+<img alt="_images/1f436f6ba4ba67b5d4e3be0a373c94665b52986c6d170e33ce5fd5d5ae29f7db.png" src="_images/1f436f6ba4ba67b5d4e3be0a373c94665b52986c6d170e33ce5fd5d5ae29f7db.png" />
 </div>
 </div>
 </section>
