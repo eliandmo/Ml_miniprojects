@@ -42,21 +42,17 @@ df_clean = df.dropna(subset=['Average_grade', 'Target']).copy()
 #Visualización
 plt.figure(figsize=(15, 12))
 
-# Gráfico 1: Distribución de abandono
 plt.subplot(2, 2, 1)
-target_counts = df_clean['Target'].value_counts()
-sns.barplot(x=target_counts.index, y=target_counts.values, palette='viridis')
-plt.title('Distribución de Abandono Académico\n(Total estudiantes: {})'.format(len(df_clean)))
+sns.countplot(data=df, x='Target', order=df['Target'].value_counts().index)
+plt.title('Distribución de Abandono Académico')
 plt.xlabel('Estado del Estudiante')
-plt.ylabel('Cantidad')
-for i, count in enumerate(target_counts):
-    plt.text(i, count+5, str(count), ha='center')
+plt.ylabel('Cantidad de Estudiantes')
 ------------------
 
 
 [31m---------------------------------------------------------------------------[39m
 [31mKeyError[39m                                  Traceback (most recent call last)
-[32m~\AppData\Local\Temp\ipykernel_22540\3313886783.py[39m in [36m?[39m[34m()[39m
+[32m~\AppData\Local\Temp\ipykernel_14796\36011268.py[39m in [36m?[39m[34m()[39m
 [32m      1[39m [38;5;66;03m# Eliminar filas con valores nulos si es necesario[39;00m
 [32m----> [39m[32m2[39m df_clean = df.dropna(subset=[[33m'Average_grade'[39m, [33m'Target'[39m]).copy()
 [32m      3[39m 
