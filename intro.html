@@ -355,7 +355,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -371,6 +373,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-del-proyecto"><strong>Objetivo del proyecto</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto"><strong>Contexto</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><strong>Metodología</strong></a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -382,7 +394,24 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="prediccion-del-riesgo-de-abandono-academico-en-estudiantes-universitarios">
 <h1><strong>Predicción del riesgo de abandono académico en estudiantes universitarios</strong><a class="headerlink" href="#prediccion-del-riesgo-de-abandono-academico-en-estudiantes-universitarios" title="Link to this heading">#</a></h1>
-<p>Una universidad desea anticiparse al riesgo de desersión de estudiantes de primer año para implementar acciones preventivas. Cuenta con datos históricos de cohortes pasadas incluyendo rendimiento académico, características socioeconómicas y hábitos de estudio.</p>
+<section id="objetivo-del-proyecto">
+<h2><strong>Objetivo del proyecto</strong><a class="headerlink" href="#objetivo-del-proyecto" title="Link to this heading">#</a></h2>
+<p>Este proyecto busca desarrollar modelos predictivos para identificar estudiantes universitarios en riesgo de abandono académico y predecir su rendimiento, utilizando algoritmos de aprendizaje automático.</p>
+</section>
+<section id="contexto">
+<h2><strong>Contexto</strong><a class="headerlink" href="#contexto" title="Link to this heading">#</a></h2>
+<p>Las instituciones educativas enfrentan el desafío constante de la deserción estudiantil, especialmente en los primeros años. Este problema tiene implicaciones académicas, económicas y sociales. La identificación temprana de estudiantes en riesgo permite implementar intervenciones oportunas.</p>
+</section>
+<section id="metodologia">
+<h2><strong>Metodología</strong><a class="headerlink" href="#metodologia" title="Link to this heading">#</a></h2>
+<p>Utilizaremos:</p>
+<ul class="simple">
+<li><p>KNN para clasificación binaria (abandono vs permanencia)</p></li>
+<li><p>KNN para regresión (predicción de promedio académico)</p></li>
+<li><p>Validación manual con múltiples valores de k (3, 5, 7, 9, 11)</p></li>
+<li><p>Métricas de evaluación específicas para cada tipo de problema</p></li>
+</ul>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -432,6 +461,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-del-proyecto"><strong>Objetivo del proyecto</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto"><strong>Contexto</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><strong>Metodología</strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
