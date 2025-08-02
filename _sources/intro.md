@@ -12,9 +12,9 @@ Las instituciones educativas enfrentan el desafío constante de la deserción es
 
 Utilizaremos:
 
-- KNN para clasificación binaria (abandono vs permanencia)
+- **KNN para clasificación binaria** (abandono vs permanencia)
 
-- KNN para regresión (predicción de promedio académico)
+- **KNN para regresión** (predicción de promedio académico)
 
 - Validación manual con múltiples valores de k (3, 5, 7, 9, 11)
 
