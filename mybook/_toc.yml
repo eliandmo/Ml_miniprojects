@@ -4,6 +4,6 @@
 format: jb-book
 root: intro
 chapters:
+- file: Análisis Exploratorio de Datos
 - file: KNN
 - file: mi_notebook
-- file: Análisis Exploratorio de Datos
