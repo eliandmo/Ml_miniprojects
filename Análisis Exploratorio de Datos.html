@@ -379,6 +379,19 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias"><strong>Librerías</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-los-datos"><strong>Importación de los datos</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-los-datos-eda"><strong>Análisis Exploratorio de los datos (EDA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-inicial"><strong>Análisis Inicial</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticos-descriptivos"><strong>Estadísticos Descriptivos</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-variable-objetivo-clasificacion"><strong>Distribución de Variable Objetivo (Clasificación)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boxplots"><strong>Boxplots</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-del-promedio"><strong>Distribución del promedio</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-por-semestre"><strong>Distribución por semestre</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -578,6 +591,552 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="analisis-exploratorio-de-los-datos-eda">
+<h2><strong>Análisis Exploratorio de los datos (EDA)</strong><a class="headerlink" href="#analisis-exploratorio-de-los-datos-eda" title="Link to this heading">#</a></h2>
+<section id="analisis-inicial">
+<h3><strong>Análisis Inicial</strong><a class="headerlink" href="#analisis-inicial" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Carga de datos</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">697</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 1.1. Análisis inicial</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Información básica:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Dimensiones: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Variables: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Valores faltantes: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Información básica:
+- Dimensiones: (4424, 37)
+- Variables: 37
+- Valores faltantes: 0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="estadisticos-descriptivos">
+<h3><strong>Estadísticos Descriptivos</strong><a class="headerlink" href="#estadisticos-descriptivos" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Estadísticas descriptivas:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estadísticas descriptivas:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Marital Status</th>
+      <th>Application mode</th>
+      <th>Application order</th>
+      <th>Course</th>
+      <th>Daytime/evening attendance</th>
+      <th>Previous qualification</th>
+      <th>Previous qualification (grade)</th>
+      <th>Nacionality</th>
+      <th>Mother's qualification</th>
+      <th>Father's qualification</th>
+      <th>...</th>
+      <th>Curricular units 2nd sem (credited)</th>
+      <th>Curricular units 2nd sem (enrolled)</th>
+      <th>Curricular units 2nd sem (evaluations)</th>
+      <th>Curricular units 2nd sem (approved)</th>
+      <th>Curricular units 2nd sem (grade)</th>
+      <th>Curricular units 2nd sem (without evaluations)</th>
+      <th>Unemployment rate</th>
+      <th>Inflation rate</th>
+      <th>GDP</th>
+      <th>Target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>...</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Graduate</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2209</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1.178571</td>
+      <td>18.669078</td>
+      <td>1.727848</td>
+      <td>8856.642631</td>
+      <td>0.890823</td>
+      <td>4.577758</td>
+      <td>132.613314</td>
+      <td>1.873192</td>
+      <td>19.561935</td>
+      <td>22.275316</td>
+      <td>...</td>
+      <td>0.541817</td>
+      <td>6.232143</td>
+      <td>8.063291</td>
+      <td>4.435805</td>
+      <td>10.230206</td>
+      <td>0.150316</td>
+      <td>11.566139</td>
+      <td>1.228029</td>
+      <td>0.001969</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.605747</td>
+      <td>17.484682</td>
+      <td>1.313793</td>
+      <td>2063.566416</td>
+      <td>0.311897</td>
+      <td>10.216592</td>
+      <td>13.188332</td>
+      <td>6.914514</td>
+      <td>15.603186</td>
+      <td>15.343108</td>
+      <td>...</td>
+      <td>1.918546</td>
+      <td>2.195951</td>
+      <td>3.947951</td>
+      <td>3.014764</td>
+      <td>5.210808</td>
+      <td>0.753774</td>
+      <td>2.663850</td>
+      <td>1.382711</td>
+      <td>2.269935</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>33.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>95.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>7.600000</td>
+      <td>-0.800000</td>
+      <td>-4.060000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>9085.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>125.000000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>3.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>5.000000</td>
+      <td>6.000000</td>
+      <td>2.000000</td>
+      <td>10.750000</td>
+      <td>0.000000</td>
+      <td>9.400000</td>
+      <td>0.300000</td>
+      <td>-1.700000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1.000000</td>
+      <td>17.000000</td>
+      <td>1.000000</td>
+      <td>9238.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>133.100000</td>
+      <td>1.000000</td>
+      <td>19.000000</td>
+      <td>19.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>6.000000</td>
+      <td>8.000000</td>
+      <td>5.000000</td>
+      <td>12.200000</td>
+      <td>0.000000</td>
+      <td>11.100000</td>
+      <td>1.400000</td>
+      <td>0.320000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.000000</td>
+      <td>39.000000</td>
+      <td>2.000000</td>
+      <td>9556.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>140.000000</td>
+      <td>1.000000</td>
+      <td>37.000000</td>
+      <td>37.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>7.000000</td>
+      <td>10.000000</td>
+      <td>6.000000</td>
+      <td>13.333333</td>
+      <td>0.000000</td>
+      <td>13.900000</td>
+      <td>2.600000</td>
+      <td>1.790000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>6.000000</td>
+      <td>57.000000</td>
+      <td>9.000000</td>
+      <td>9991.000000</td>
+      <td>1.000000</td>
+      <td>43.000000</td>
+      <td>190.000000</td>
+      <td>109.000000</td>
+      <td>44.000000</td>
+      <td>44.000000</td>
+      <td>...</td>
+      <td>19.000000</td>
+      <td>23.000000</td>
+      <td>33.000000</td>
+      <td>20.000000</td>
+      <td>18.571429</td>
+      <td>12.000000</td>
+      <td>16.200000</td>
+      <td>3.700000</td>
+      <td>3.510000</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>11 rows × 37 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="distribucion-de-variable-objetivo-clasificacion">
+<h3><strong>Distribución de Variable Objetivo (Clasificación)</strong><a class="headerlink" href="#distribucion-de-variable-objetivo-clasificacion" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Target&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Abandono&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Distribución de Abandono&#39;)
+</pre></div>
+</div>
+<img alt="_images/a0aed5dea5bf04d0b76699b6b99cc0e0640118b37665d6143da3f57bd508f103.png" src="_images/a0aed5dea5bf04d0b76699b6b99cc0e0640118b37665d6143da3f57bd508f103.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="boxplots">
+<h2><strong>Boxplots</strong><a class="headerlink" href="#boxplots" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Target&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Promedios por Estado de Abandono&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Estado del Estudiante&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Promedio Académico&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Target&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Promedios por Estado de Abandono&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Estado del Estudiante&#39;</span><span class="p">)</span>
+
+<span class="nn">File c:\Users\Elian\miniconda3\Lib\site-packages\seaborn\categorical.py:1597,</span> in <span class="ni">boxplot</span><span class="nt">(data, x, y, hue, order, hue_order, orient, color, palette, saturation, fill, dodge, width, gap, whis, linecolor, linewidth, fliersize, hue_norm, native_scale, log_scale, formatter, legend, ax, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1589</span> <span class="k">def</span><span class="w"> </span><span class="nf">boxplot</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1590</span>     <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hue_order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1591</span>     <span class="n">orient</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saturation</span><span class="o">=</span><span class="mf">.75</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1594</span>     <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">   </span><span class="mi">1595</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1597</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">_CategoricalPlotter</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1598</span>         <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1599</span>         <span class="n">variables</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">hue</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1600</span>         <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1601</span>         <span class="n">orient</span><span class="o">=</span><span class="n">orient</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1602</span>         <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1603</span>         <span class="n">legend</span><span class="o">=</span><span class="n">legend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1604</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1606</span>     <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1607</span>         <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="nn">File c:\Users\Elian\miniconda3\Lib\site-packages\seaborn\categorical.py:67,</span> in <span class="ni">_CategoricalPlotter.__init__</span><span class="nt">(self, data, variables, order, orient, require_numeric, color, legend)</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span>     <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>     <span class="mi">64</span>     <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span> <span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">67</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="n">variables</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span>     <span class="c1"># This method takes care of some bookkeeping that is necessary because the</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="c1"># original categorical plots (prior to the 2021 refactor) had some rules that</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="c1"># don&#39;t fit exactly into VectorPlotter logic. It may be wise to have a second</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>     <span class="mi">76</span>     <span class="c1"># default VectorPlotter rules. If we do decide to make orient part of the</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span>     <span class="c1"># _base variable assignment, we&#39;ll want to figure out how to express that.</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_format</span> <span class="o">==</span> <span class="s2">&quot;wide&quot;</span> <span class="ow">and</span> <span class="n">orient</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]:</span>
+
+<span class="nn">File c:\Users\Elian\miniconda3\Lib\site-packages\seaborn\_base.py:634,</span> in <span class="ni">VectorPlotter.__init__</span><span class="nt">(self, data, variables)</span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span> <span class="c1"># var_ordered is relevant only for categorical axis variables, and may</span>
+<span class="g g-Whitespace">    </span><span class="mi">630</span> <span class="c1"># be better handled by an internal axis information object that tracks</span>
+<span class="g g-Whitespace">    </span><span class="mi">631</span> <span class="c1"># such information and is set up by the scale_* methods. The analogous</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span> <span class="c1"># information for numeric axes would be information about log scales.</span>
+<span class="g g-Whitespace">    </span><span class="mi">633</span> <span class="bp">self</span><span class="o">.</span><span class="n">_var_ordered</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>  <span class="c1"># alt., used DefaultDict</span>
+<span class="ne">--&gt; </span><span class="mi">634</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_variables</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">variables</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">636</span> <span class="c1"># TODO Lots of tests assume that these are called to initialize the</span>
+<span class="g g-Whitespace">    </span><span class="mi">637</span> <span class="c1"># mappings to default values on class initialization. I&#39;d prefer to</span>
+<span class="g g-Whitespace">    </span><span class="mi">638</span> <span class="c1"># move away from that and only have a mapping when explicitly called.</span>
+<span class="g g-Whitespace">    </span><span class="mi">639</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;hue&quot;</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">,</span> <span class="s2">&quot;style&quot;</span><span class="p">]:</span>
+
+<span class="nn">File c:\Users\Elian\miniconda3\Lib\site-packages\seaborn\_base.py:679,</span> in <span class="ni">VectorPlotter.assign_variables</span><span class="nt">(self, data, variables)</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span>     <span class="c1"># When dealing with long-form input, use the newer PlotData</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="c1"># object (internal but introduced for the objects interface)</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span>     <span class="c1"># to centralize / standardize data consumption logic.</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span>     <span class="bp">self</span><span class="o">.</span><span class="n">input_format</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">679</span>     <span class="n">plot_data</span> <span class="o">=</span> <span class="n">PlotData</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">variables</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">680</span>     <span class="n">frame</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">frame</span>
+<span class="g g-Whitespace">    </span><span class="mi">681</span>     <span class="n">names</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">names</span>
+
+<span class="nn">File c:\Users\Elian\miniconda3\Lib\site-packages\seaborn\_core\data.py:58,</span> in <span class="ni">PlotData.__init__</span><span class="nt">(self, data, variables)</span>
+<span class="g g-Whitespace">     </span><span class="mi">51</span> <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span>     <span class="n">data</span><span class="p">:</span> <span class="n">DataSource</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">54</span>     <span class="n">variables</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VariableSpec</span><span class="p">],</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="n">data</span> <span class="o">=</span> <span class="n">handle_data_source</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">58</span>     <span class="n">frame</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assign_variables</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">variables</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span>     <span class="bp">self</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="bp">self</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="n">names</span>
+
+<span class="nn">File c:\Users\Elian\miniconda3\Lib\site-packages\seaborn\_core\data.py:232,</span> in <span class="ni">PlotData._assign_variables</span><span class="nt">(self, data, variables)</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span>         <span class="n">err</span> <span class="o">+=</span> <span class="s2">&quot;An entry with this name does not appear in `data`.&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">232</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">235</span> 
+<span class="g g-Whitespace">    </span><span class="mi">236</span>     <span class="c1"># Otherwise, assume the value somehow represents data</span>
+<span class="g g-Whitespace">    </span><span class="mi">237</span> 
+<span class="g g-Whitespace">    </span><span class="mi">238</span>     <span class="c1"># Ignore empty data structures</span>
+<span class="g g-Whitespace">    </span><span class="mi">239</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">Sized</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+<span class="ne">ValueError</span>: Could not interpret value `Average_grade` for `y`. An entry with this name does not appear in `data`.
+</pre></div>
+</div>
+<img alt="_images/14eef82b5da50cd07f84202bcfb04286f5a32f4e59f5dc3bbf7b2eef7078b025.png" src="_images/14eef82b5da50cd07f84202bcfb04286f5a32f4e59f5dc3bbf7b2eef7078b025.png" />
+</div>
+</div>
+<section id="distribucion-del-promedio">
+<h3><strong>Distribución del promedio</strong><a class="headerlink" href="#distribucion-del-promedio" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear nueva columna con el promedio de ambos semestres</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Curricular units 1st sem (grade)&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Curricular units 2nd sem (grade)&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+
+<span class="c1"># Verificar cálculo</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estadísticas del promedio académico:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estadísticas del promedio académico:
+count    4424.000000
+mean       10.435514
+std         4.818530
+min         0.000000
+25%        11.000000
+50%        12.250000
+75%        13.266667
+max        18.283654
+Name: Average_grade, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución del Promedio Académico Combinado&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Promedio (1er y 2do semestre)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Frecuencia&#39;)
+</pre></div>
+</div>
+<img alt="_images/d24e5402588b36e61792c206382627caba17e61d62715a59ea53c19325bbad95.png" src="_images/d24e5402588b36e61792c206382627caba17e61d62715a59ea53c19325bbad95.png" />
+</div>
+</div>
+<section id="distribucion-por-semestre">
+<h4><strong>Distribución por semestre</strong><a class="headerlink" href="#distribucion-por-semestre" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Curricular units 1st sem (grade)&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;1er Semestre&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Curricular units 2nd sem (grade)&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2do Semestre&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparación de Distribución por Semestre&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Calificación&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Densidad&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1e423c8de80&gt;
+</pre></div>
+</div>
+<img alt="_images/8624db4cb417c498503056ac4855879c7e371bb84dc78c7ea77e718c9d429945.png" src="_images/8624db4cb417c498503056ac4855879c7e371bb84dc78c7ea77e718c9d429945.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -639,6 +1198,19 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias"><strong>Librerías</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-los-datos"><strong>Importación de los datos</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-los-datos-eda"><strong>Análisis Exploratorio de los datos (EDA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-inicial"><strong>Análisis Inicial</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticos-descriptivos"><strong>Estadísticos Descriptivos</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-variable-objetivo-clasificacion"><strong>Distribución de Variable Objetivo (Clasificación)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boxplots"><strong>Boxplots</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-del-promedio"><strong>Distribución del promedio</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-por-semestre"><strong>Distribución por semestre</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
