@@ -381,13 +381,21 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-los-datos"><strong>Importación de los datos</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-los-datos-eda"><strong>Análisis Exploratorio de los datos (EDA)</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-inicial"><strong>Análisis Inicial</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticos-descriptivos"><strong>Estadísticos Descriptivos</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-variable-objetivo-clasificacion"><strong>Distribución de Variable Objetivo (Clasificación)</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-del-promedio"><strong>Distribución del promedio</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-por-semestre"><strong>Distribución por semestre</strong></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boxplot"><strong>Boxplot</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-las-variables-y-preprocesamiento"><strong>Clasificación de las variables y preprocesamiento</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-variables"><strong>Clasificación de variables</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-estadistico-por-tipo-de-varibale"><strong>Análisis estadístico por tipo de varibale</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas"><strong>Variables numéricas</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas"><strong>Variables categóricas</strong></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -617,331 +625,6 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="estadisticos-descriptivos">
-<h3><strong>Estadísticos Descriptivos</strong><a class="headerlink" href="#estadisticos-descriptivos" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Estadísticas descriptivas:&quot;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estadísticas descriptivas:
-</pre></div>
-</div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Marital Status</th>
-      <th>Application mode</th>
-      <th>Application order</th>
-      <th>Course</th>
-      <th>Daytime/evening attendance</th>
-      <th>Previous qualification</th>
-      <th>Previous qualification (grade)</th>
-      <th>Nacionality</th>
-      <th>Mother's qualification</th>
-      <th>Father's qualification</th>
-      <th>...</th>
-      <th>Curricular units 2nd sem (credited)</th>
-      <th>Curricular units 2nd sem (enrolled)</th>
-      <th>Curricular units 2nd sem (evaluations)</th>
-      <th>Curricular units 2nd sem (approved)</th>
-      <th>Curricular units 2nd sem (grade)</th>
-      <th>Curricular units 2nd sem (without evaluations)</th>
-      <th>Unemployment rate</th>
-      <th>Inflation rate</th>
-      <th>GDP</th>
-      <th>Target</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>...</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424.000000</td>
-      <td>4424</td>
-    </tr>
-    <tr>
-      <th>unique</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>top</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Graduate</td>
-    </tr>
-    <tr>
-      <th>freq</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>2209</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>1.178571</td>
-      <td>18.669078</td>
-      <td>1.727848</td>
-      <td>8856.642631</td>
-      <td>0.890823</td>
-      <td>4.577758</td>
-      <td>132.613314</td>
-      <td>1.873192</td>
-      <td>19.561935</td>
-      <td>22.275316</td>
-      <td>...</td>
-      <td>0.541817</td>
-      <td>6.232143</td>
-      <td>8.063291</td>
-      <td>4.435805</td>
-      <td>10.230206</td>
-      <td>0.150316</td>
-      <td>11.566139</td>
-      <td>1.228029</td>
-      <td>0.001969</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>0.605747</td>
-      <td>17.484682</td>
-      <td>1.313793</td>
-      <td>2063.566416</td>
-      <td>0.311897</td>
-      <td>10.216592</td>
-      <td>13.188332</td>
-      <td>6.914514</td>
-      <td>15.603186</td>
-      <td>15.343108</td>
-      <td>...</td>
-      <td>1.918546</td>
-      <td>2.195951</td>
-      <td>3.947951</td>
-      <td>3.014764</td>
-      <td>5.210808</td>
-      <td>0.753774</td>
-      <td>2.663850</td>
-      <td>1.382711</td>
-      <td>2.269935</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>33.000000</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>95.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>7.600000</td>
-      <td>-0.800000</td>
-      <td>-4.060000</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>9085.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>125.000000</td>
-      <td>1.000000</td>
-      <td>2.000000</td>
-      <td>3.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>5.000000</td>
-      <td>6.000000</td>
-      <td>2.000000</td>
-      <td>10.750000</td>
-      <td>0.000000</td>
-      <td>9.400000</td>
-      <td>0.300000</td>
-      <td>-1.700000</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>1.000000</td>
-      <td>17.000000</td>
-      <td>1.000000</td>
-      <td>9238.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>133.100000</td>
-      <td>1.000000</td>
-      <td>19.000000</td>
-      <td>19.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>6.000000</td>
-      <td>8.000000</td>
-      <td>5.000000</td>
-      <td>12.200000</td>
-      <td>0.000000</td>
-      <td>11.100000</td>
-      <td>1.400000</td>
-      <td>0.320000</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>1.000000</td>
-      <td>39.000000</td>
-      <td>2.000000</td>
-      <td>9556.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>140.000000</td>
-      <td>1.000000</td>
-      <td>37.000000</td>
-      <td>37.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>7.000000</td>
-      <td>10.000000</td>
-      <td>6.000000</td>
-      <td>13.333333</td>
-      <td>0.000000</td>
-      <td>13.900000</td>
-      <td>2.600000</td>
-      <td>1.790000</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>6.000000</td>
-      <td>57.000000</td>
-      <td>9.000000</td>
-      <td>9991.000000</td>
-      <td>1.000000</td>
-      <td>43.000000</td>
-      <td>190.000000</td>
-      <td>109.000000</td>
-      <td>44.000000</td>
-      <td>44.000000</td>
-      <td>...</td>
-      <td>19.000000</td>
-      <td>23.000000</td>
-      <td>33.000000</td>
-      <td>20.000000</td>
-      <td>18.571429</td>
-      <td>12.000000</td>
-      <td>16.200000</td>
-      <td>3.700000</td>
-      <td>3.510000</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-<p>11 rows × 37 columns</p>
-</div></div></div>
-</div>
-</section>
 <section id="distribucion-de-variable-objetivo-clasificacion">
 <h3><strong>Distribución de Variable Objetivo (Clasificación)</strong><a class="headerlink" href="#distribucion-de-variable-objetivo-clasificacion" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -1019,7 +702,7 @@ Name: Average_grade, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1547c67c440&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1a7f0855400&gt;
 </pre></div>
 </div>
 <img alt="_images/ee08b9305020062fab668dd99105c639efd192f62f94cf8a2c7cb41938b88f8d.png" src="_images/ee08b9305020062fab668dd99105c639efd192f62f94cf8a2c7cb41938b88f8d.png" />
@@ -1044,7 +727,7 @@ Name: Average_grade, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Elian\AppData\Local\Temp\ipykernel_40496\4238463372.py:2: FutureWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Elian\AppData\Local\Temp\ipykernel_27748\4238463372.py:2: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
@@ -1054,6 +737,242 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 <img alt="_images/1f436f6ba4ba67b5d4e3be0a373c94665b52986c6d170e33ce5fd5d5ae29f7db.png" src="_images/1f436f6ba4ba67b5d4e3be0a373c94665b52986c6d170e33ce5fd5d5ae29f7db.png" />
 </div>
 </div>
+</section>
+</section>
+<section id="clasificacion-de-las-variables-y-preprocesamiento">
+<h2><strong>Clasificación de las variables y preprocesamiento</strong><a class="headerlink" href="#clasificacion-de-las-variables-y-preprocesamiento" title="Link to this heading">#</a></h2>
+<p>Basado en la descripción del dataset, clasificaré las variables en categóricas y numéricas, y luego crearé un pipeline adecuado para el preprocesamiento.</p>
+<section id="clasificacion-de-variables">
+<h3><strong>Clasificación de variables</strong><a class="headerlink" href="#clasificacion-de-variables" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+
+<span class="c1"># Definición de columnas por tipo</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Marital Status&#39;</span><span class="p">,</span> <span class="s1">&#39;Application mode&#39;</span><span class="p">,</span> <span class="s1">&#39;Course&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;Daytime/evening attendance&#39;</span><span class="p">,</span> <span class="s1">&#39;Previous qualification&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Nacionality&#39;</span><span class="p">,</span> <span class="s2">&quot;Mother&#39;s qualification&quot;</span><span class="p">,</span> <span class="s2">&quot;Father&#39;s qualification&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Mother&#39;s occupation&quot;</span><span class="p">,</span> <span class="s2">&quot;Father&#39;s occupation&quot;</span><span class="p">,</span> <span class="s1">&#39;Displaced&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Educational special needs&#39;</span><span class="p">,</span> <span class="s1">&#39;Debtor&#39;</span><span class="p">,</span> <span class="s1">&#39;Tuition fees up to date&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;Scholarship holder&#39;</span><span class="p">,</span> <span class="s1">&#39;International&#39;</span>
+<span class="p">]</span>
+
+<span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Application order&#39;</span><span class="p">,</span> <span class="s1">&#39;Previous qualification (grade)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Admission grade&#39;</span><span class="p">,</span> <span class="s1">&#39;Age at enrollment&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 1st sem (credited)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 1st sem (enrolled)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 1st sem (evaluations)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 1st sem (approved)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 1st sem (grade)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 1st sem (without evaluations)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 2nd sem (credited)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 2nd sem (enrolled)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 2nd sem (evaluations)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 2nd sem (approved)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 2nd sem (grade)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 2nd sem (without evaluations)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Unemployment rate&#39;</span><span class="p">,</span> <span class="s1">&#39;Inflation rate&#39;</span><span class="p">,</span> <span class="s1">&#39;GDP&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Transformers para cada tipo de variable</span>
+<span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">())</span>  <span class="c1"># Normalización MinMax para variables numéricas</span>
+<span class="p">])</span>
+
+<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>  <span class="c1"># OneHot para categóricas</span>
+<span class="p">])</span>
+
+<span class="c1"># Combinar transformers en un ColumnTransformer</span>
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">remainder</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span>  <span class="c1"># Ignorar cualquier otra columna no especificada</span>
+<span class="p">)</span>
+
+<span class="c1"># Pipeline completo (puedes añadir el estimador al final)</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;preprocessor&#39;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">)</span>
+    <span class="c1"># (&#39;classifier&#39;, ...)  # Aquí iría tu modelo KNN u otro</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analisis-estadistico-por-tipo-de-varibale">
+<h3><strong>Análisis estadístico por tipo de varibale</strong><a class="headerlink" href="#analisis-estadistico-por-tipo-de-varibale" title="Link to this heading">#</a></h3>
+<section id="variables-numericas">
+<h4><strong>Variables numéricas</strong><a class="headerlink" href="#variables-numericas" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estadísticas descriptivas</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">numeric_features</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="c1"># Visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">numeric_features</span><span class="p">[:</span><span class="mi">6</span><span class="p">]):</span>  <span class="c1"># Mostrar solo las primeras 6 para ejemplo</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distribución de </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       Application order  Previous qualification (grade)  Admission grade  \
+count        4424.000000                     4424.000000      4424.000000   
+mean            1.727848                      132.613314       126.978119   
+std             1.313793                       13.188332        14.482001   
+min             0.000000                       95.000000        95.000000   
+25%             1.000000                      125.000000       117.900000   
+50%             1.000000                      133.100000       126.100000   
+75%             2.000000                      140.000000       134.800000   
+max             9.000000                      190.000000       190.000000   
+
+       Age at enrollment  Curricular units 1st sem (credited)  \
+count        4424.000000                          4424.000000   
+mean           23.265145                             0.709991   
+std             7.587816                             2.360507   
+min            17.000000                             0.000000   
+25%            19.000000                             0.000000   
+50%            20.000000                             0.000000   
+75%            25.000000                             0.000000   
+max            70.000000                            20.000000   
+
+       Curricular units 1st sem (enrolled)  \
+count                          4424.000000   
+mean                              6.270570   
+std                               2.480178   
+min                               0.000000   
+25%                               5.000000   
+50%                               6.000000   
+75%                               7.000000   
+max                              26.000000   
+
+       Curricular units 1st sem (evaluations)  \
+count                             4424.000000   
+mean                                 8.299051   
+std                                  4.179106   
+min                                  0.000000   
+25%                                  6.000000   
+50%                                  8.000000   
+75%                                 10.000000   
+max                                 45.000000   
+
+       Curricular units 1st sem (approved)  Curricular units 1st sem (grade)  \
+count                          4424.000000                       4424.000000   
+mean                              4.706600                         10.640822   
+std                               3.094238                          4.843663   
+min                               0.000000                          0.000000   
+25%                               3.000000                         11.000000   
+50%                               5.000000                         12.285714   
+75%                               6.000000                         13.400000   
+max                              26.000000                         18.875000   
+
+       Curricular units 1st sem (without evaluations)  \
+count                                     4424.000000   
+mean                                         0.137658   
+std                                          0.690880   
+min                                          0.000000   
+25%                                          0.000000   
+50%                                          0.000000   
+75%                                          0.000000   
+max                                         12.000000   
+
+       Curricular units 2nd sem (credited)  \
+count                          4424.000000   
+mean                              0.541817   
+std                               1.918546   
+min                               0.000000   
+25%                               0.000000   
+50%                               0.000000   
+75%                               0.000000   
+max                              19.000000   
+
+       Curricular units 2nd sem (enrolled)  \
+count                          4424.000000   
+mean                              6.232143   
+std                               2.195951   
+min                               0.000000   
+25%                               5.000000   
+50%                               6.000000   
+75%                               7.000000   
+max                              23.000000   
+
+       Curricular units 2nd sem (evaluations)  \
+count                             4424.000000   
+mean                                 8.063291   
+std                                  3.947951   
+min                                  0.000000   
+25%                                  6.000000   
+50%                                  8.000000   
+75%                                 10.000000   
+max                                 33.000000   
+
+       Curricular units 2nd sem (approved)  Curricular units 2nd sem (grade)  \
+count                          4424.000000                       4424.000000   
+mean                              4.435805                         10.230206   
+std                               3.014764                          5.210808   
+min                               0.000000                          0.000000   
+25%                               2.000000                         10.750000   
+50%                               5.000000                         12.200000   
+75%                               6.000000                         13.333333   
+max                              20.000000                         18.571429   
+
+       Curricular units 2nd sem (without evaluations)  Unemployment rate  \
+count                                     4424.000000        4424.000000   
+mean                                         0.150316          11.566139   
+std                                          0.753774           2.663850   
+min                                          0.000000           7.600000   
+25%                                          0.000000           9.400000   
+50%                                          0.000000          11.100000   
+75%                                          0.000000          13.900000   
+max                                         12.000000          16.200000   
+
+       Inflation rate          GDP  
+count     4424.000000  4424.000000  
+mean         1.228029     0.001969  
+std          1.382711     2.269935  
+min         -0.800000    -4.060000  
+25%          0.300000    -1.700000  
+50%          1.400000     0.320000  
+75%          2.600000     1.790000  
+max          3.700000     3.510000  
+</pre></div>
+</div>
+<img alt="_images/fadba2f265ee04dee113c5be987a26ca4658f1ff52336bf7b87709ec6951e85e.png" src="_images/fadba2f265ee04dee113c5be987a26ca4658f1ff52336bf7b87709ec6951e85e.png" />
+</div>
+</div>
+</section>
+<section id="variables-categoricas">
+<h4><strong>Variables categóricas</strong><a class="headerlink" href="#variables-categoricas" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Frecuencias y visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">[:</span><span class="mi">6</span><span class="p">]):</span>  <span class="c1"># Mostrar solo las primeras 6 para ejemplo</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distribución de </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/267213683a58b1d4d67734823f83cd284df00006ebea5f81c6a01fe8b220f3cf.png" src="_images/267213683a58b1d4d67734823f83cd284df00006ebea5f81c6a01fe8b220f3cf.png" />
+</div>
+</div>
+</section>
 </section>
 </section>
 </section>
@@ -1119,13 +1038,21 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-los-datos"><strong>Importación de los datos</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-los-datos-eda"><strong>Análisis Exploratorio de los datos (EDA)</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-inicial"><strong>Análisis Inicial</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticos-descriptivos"><strong>Estadísticos Descriptivos</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-variable-objetivo-clasificacion"><strong>Distribución de Variable Objetivo (Clasificación)</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-del-promedio"><strong>Distribución del promedio</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-por-semestre"><strong>Distribución por semestre</strong></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boxplot"><strong>Boxplot</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-las-variables-y-preprocesamiento"><strong>Clasificación de las variables y preprocesamiento</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-variables"><strong>Clasificación de variables</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-estadistico-por-tipo-de-varibale"><strong>Análisis estadístico por tipo de varibale</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas"><strong>Variables numéricas</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas"><strong>Variables categóricas</strong></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

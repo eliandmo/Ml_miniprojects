@@ -4,4 +4,4 @@
 format: jb-book
 root: intro
 chapters:
-- file: Análisis Exploratorio de Datos
+- file: Modelo KNN y Regresión
