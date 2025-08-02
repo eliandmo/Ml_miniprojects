@@ -1,0 +1,1112 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Carga y Exploración de Datos &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Modelo KNN y Regresión';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Predicción del riesgo de abandono académico en estudiantes universitarios" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/des.jpg" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/des.jpg" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Predicción del riesgo de abandono académico en estudiantes universitarios
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Carga y Exploración de Datos</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FModelo KNN y Regresión.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Modelo KNN y Regresión.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Carga y Exploración de Datos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo"><strong>Objetivo</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias"><strong>Librerías</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-los-datos"><strong>Importación de los datos</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-los-datos-eda"><strong>Análisis Exploratorio de los datos (EDA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-inicial"><strong>Análisis Inicial</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-variable-objetivo-clasificacion"><strong>Distribución de Variable Objetivo (Clasificación)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-del-promedio"><strong>Distribución del promedio</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-por-semestre"><strong>Distribución por semestre</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boxplot"><strong>Boxplot</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-las-variables-y-preprocesamiento"><strong>Clasificación de las variables y preprocesamiento</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-variables"><strong>Clasificación de variables</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-estadistico-por-tipo-de-varibale"><strong>Análisis estadístico por tipo de varibale</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas"><strong>Variables numéricas</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas"><strong>Variables categóricas</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="carga-y-exploracion-de-datos">
+<h1><strong>Carga y Exploración de Datos</strong><a class="headerlink" href="#carga-y-exploracion-de-datos" title="Link to this heading">#</a></h1>
+<section id="objetivo">
+<h2><strong>Objetivo</strong><a class="headerlink" href="#objetivo" title="Link to this heading">#</a></h2>
+<p>Comprender la estructura, distribución y relaciones en el dataset mediante:</p>
+<ul class="simple">
+<li><p>Análisis estadístico descriptivo</p></li>
+<li><p>Visualización de distribuciones</p></li>
+<li><p>Identificación de patrones iniciales</p></li>
+</ul>
+</section>
+<section id="dataset">
+<h2><strong>Dataset</strong><a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
+<p>El conjunto de datos proviene del UCI Machine Learning Repository y contiene información sobre:</p>
+<ul class="simple">
+<li><p>Características demográficas</p></li>
+<li><p>Historial académico previo</p></li>
+<li><p>Desempeño durante el semestre</p></li>
+<li><p>Resultados finales (abandono y calificaciones)</p></li>
+</ul>
+</section>
+<section id="librerias">
+<h2><strong>Librerías</strong><a class="headerlink" href="#librerias" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importación de librerías (celda de código)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsClassifier</span><span class="p">,</span> <span class="n">KNeighborsRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span> 
+                           <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span>
+                           <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="importacion-de-los-datos">
+<h2><strong>Importación de los datos</strong><a class="headerlink" href="#importacion-de-los-datos" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ucimlrepo</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_ucirepo</span> 
+  
+<span class="c1"># fetch dataset </span>
+<span class="n">predict_students_dropout_and_academic_success</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">697</span><span class="p">)</span> 
+  
+<span class="c1"># data (as pandas dataframes) </span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">predict_students_dropout_and_academic_success</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span> 
+<span class="n">y</span> <span class="o">=</span> <span class="n">predict_students_dropout_and_academic_success</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span> 
+  
+<span class="c1"># metadata </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">predict_students_dropout_and_academic_success</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span> 
+  
+<span class="c1"># variable information </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">predict_students_dropout_and_academic_success</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;uci_id&#39;: 697, &#39;name&#39;: &quot;Predict Students&#39; Dropout and Academic Success&quot;, &#39;repository_url&#39;: &#39;https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success&#39;, &#39;data_url&#39;: &#39;https://archive.ics.uci.edu/static/public/697/data.csv&#39;, &#39;abstract&#39;: &quot;A dataset created from a higher education institution (acquired from several disjoint databases) related to students enrolled in different undergraduate degrees, such as agronomy, design, education, nursing, journalism, management, social service, and technologies.\nThe dataset includes information known at the time of student enrollment (academic path, demographics, and social-economic factors) and the students&#39; academic performance at the end of the first and second semesters. \nThe data is used to build classification models to predict students&#39; dropout and academic sucess. The problem is formulated as a three category classification task, in which there is a strong imbalance towards one of the classes.&quot;, &#39;area&#39;: &#39;Social Science&#39;, &#39;tasks&#39;: [&#39;Classification&#39;], &#39;characteristics&#39;: [&#39;Tabular&#39;], &#39;num_instances&#39;: 4424, &#39;num_features&#39;: 36, &#39;feature_types&#39;: [&#39;Real&#39;, &#39;Categorical&#39;, &#39;Integer&#39;], &#39;demographics&#39;: [&#39;Marital Status&#39;, &#39;Education Level&#39;, &#39;Nationality&#39;, &#39;Occupation&#39;, &#39;Gender&#39;, &#39;Age&#39;], &#39;target_col&#39;: [&#39;Target&#39;], &#39;index_col&#39;: None, &#39;has_missing_values&#39;: &#39;no&#39;, &#39;missing_values_symbol&#39;: None, &#39;year_of_dataset_creation&#39;: 2021, &#39;last_updated&#39;: &#39;Mon Feb 26 2024&#39;, &#39;dataset_doi&#39;: &#39;10.24432/C5MC89&#39;, &#39;creators&#39;: [&#39;Valentim Realinho&#39;, &#39;Mónica Vieira Martins&#39;, &#39;Jorge Machado&#39;, &#39;Luís Baptista&#39;], &#39;intro_paper&#39;: {&#39;ID&#39;: 99, &#39;type&#39;: &#39;NATIVE&#39;, &#39;title&#39;: &quot;Early prediction of student&#39;s performance in higher education: a case study&quot;, &#39;authors&#39;: &#39;Mónica V. Martins, Daniel Tolledo, Jorge Machado, Luís M. T. Baptista, and Valentim Realinho&#39;, &#39;venue&#39;: &#39;Trends and Applications in Information Systems and Technologies&#39;, &#39;year&#39;: 2021, &#39;journal&#39;: &#39;Advances in Intelligent Systems and Computing series&#39;, &#39;DOI&#39;: &#39;http://www.doi.org/10.1007/978-3-030-72657-7_16&#39;, &#39;URL&#39;: &#39;http://www.worldcist.org/2021/&#39;, &#39;sha&#39;: None, &#39;corpus&#39;: None, &#39;arxiv&#39;: None, &#39;mag&#39;: None, &#39;acl&#39;: None, &#39;pmid&#39;: None, &#39;pmcid&#39;: None}, &#39;additional_info&#39;: {&#39;summary&#39;: None, &#39;purpose&#39;: &#39;The dataset was created in a project that aims to contribute to the reduction of academic dropout and failure in higher education, by using machine learning techniques to identify students at risk at an early stage of their academic path, so that strategies to support them can be put into place. \n\nThe dataset includes information known at the time of student enrollment – academic path, demographics, and social-economic factors. \n\nThe problem is formulated as a three category classification task (dropout, enrolled, and graduate) at the end of the normal duration of the course. \n&#39;, &#39;funded_by&#39;: &#39;This dataset is supported by program SATDAP - Capacitação da Administração Pública under grant POCI-05-5762-FSE-000191, Portugal.&#39;, &#39;instances_represent&#39;: &#39;Each instance is a student&#39;, &#39;recommended_data_splits&#39;: &#39;The dataset was used, in our project, with a data split of 80% for training and 20% for test.&#39;, &#39;sensitive_data&#39;: None, &#39;preprocessing_description&#39;: &#39;We performed a rigorous data preprocessing to handle data from anomalies, unexplainable outliers, and missing values.&#39;, &#39;variable_info&#39;: None, &#39;citation&#39;: &#39;If you use this dataset in experiments for a scientific publication, please kindly cite our paper: \nM.V.Martins, D. Tolledo, J. Machado, L. M.T. Baptista, V.Realinho. (2021) &quot;Early prediction of student’s performance in higher education: a case study&quot; Trends and Applications in Information Systems and Technologies, vol.1, in Advances in Intelligent Systems and Computing series. Springer. DOI: 10.1007/978-3-030-72657-7_16&#39;}}
+                                              name     role         type  \
+0                                   Marital Status  Feature      Integer   
+1                                 Application mode  Feature      Integer   
+2                                Application order  Feature      Integer   
+3                                           Course  Feature      Integer   
+4                       Daytime/evening attendance  Feature      Integer   
+5                           Previous qualification  Feature      Integer   
+6                   Previous qualification (grade)  Feature   Continuous   
+7                                      Nacionality  Feature      Integer   
+8                           Mother&#39;s qualification  Feature      Integer   
+9                           Father&#39;s qualification  Feature      Integer   
+10                             Mother&#39;s occupation  Feature      Integer   
+11                             Father&#39;s occupation  Feature      Integer   
+12                                 Admission grade  Feature   Continuous   
+13                                       Displaced  Feature      Integer   
+14                       Educational special needs  Feature      Integer   
+15                                          Debtor  Feature      Integer   
+16                         Tuition fees up to date  Feature      Integer   
+17                                          Gender  Feature      Integer   
+18                              Scholarship holder  Feature      Integer   
+19                               Age at enrollment  Feature      Integer   
+20                                   International  Feature      Integer   
+21             Curricular units 1st sem (credited)  Feature      Integer   
+22             Curricular units 1st sem (enrolled)  Feature      Integer   
+23          Curricular units 1st sem (evaluations)  Feature      Integer   
+24             Curricular units 1st sem (approved)  Feature      Integer   
+25                Curricular units 1st sem (grade)  Feature      Integer   
+26  Curricular units 1st sem (without evaluations)  Feature      Integer   
+27             Curricular units 2nd sem (credited)  Feature      Integer   
+28             Curricular units 2nd sem (enrolled)  Feature      Integer   
+29          Curricular units 2nd sem (evaluations)  Feature      Integer   
+30             Curricular units 2nd sem (approved)  Feature      Integer   
+31                Curricular units 2nd sem (grade)  Feature      Integer   
+32  Curricular units 2nd sem (without evaluations)  Feature      Integer   
+33                               Unemployment rate  Feature   Continuous   
+34                                  Inflation rate  Feature   Continuous   
+35                                             GDP  Feature   Continuous   
+36                                          Target   Target  Categorical   
+
+        demographic                                        description units  \
+0    Marital Status  1 – single 2 – married 3 – widower 4 – divorce...  None   
+1              None  1 - 1st phase - general contingent 2 - Ordinan...  None   
+2              None  Application order (between 0 - first choice; a...  None   
+3              None  33 - Biofuel Production Technologies 171 - Ani...  None   
+4              None                            1 – daytime 0 - evening  None   
+5   Education Level  1 - Secondary education 2 - Higher education -...  None   
+6              None  Grade of previous qualification (between 0 and...  None   
+7       Nationality  1 - Portuguese; 2 - German; 6 - Spanish; 11 - ...  None   
+8   Education Level  1 - Secondary Education - 12th Year of Schooli...  None   
+9   Education Level  1 - Secondary Education - 12th Year of Schooli...  None   
+10       Occupation  0 - Student 1 - Representatives of the Legisla...  None   
+11       Occupation  0 - Student 1 - Representatives of the Legisla...  None   
+12             None                Admission grade (between 0 and 200)  None   
+13             None                                     1 – yes 0 – no  None   
+14             None                                     1 – yes 0 – no  None   
+15             None                                     1 – yes 0 – no  None   
+16             None                                     1 – yes 0 – no  None   
+17           Gender                                1 – male 0 – female  None   
+18             None                                     1 – yes 0 – no  None   
+19              Age                       Age of studend at enrollment  None   
+20             None                                     1 – yes 0 – no  None   
+21             None  Number of curricular units credited in the 1st...  None   
+22             None  Number of curricular units enrolled in the 1st...  None   
+23             None  Number of evaluations to curricular units in t...  None   
+24             None  Number of curricular units approved in the 1st...  None   
+25             None  Grade average in the 1st semester (between 0 a...  None   
+26             None  Number of curricular units without evalutions ...  None   
+27             None  Number of curricular units credited in the 2nd...  None   
+28             None  Number of curricular units enrolled in the 2nd...  None   
+29             None  Number of evaluations to curricular units in t...  None   
+30             None  Number of curricular units approved in the 2nd...  None   
+31             None  Grade average in the 2nd semester (between 0 a...  None   
+32             None  Number of curricular units without evalutions ...  None   
+33             None                              Unemployment rate (%)  None   
+34             None                                 Inflation rate (%)  None   
+35             None                                                GDP  None   
+36             None  Target. The problem is formulated as a three c...  None   
+
+   missing_values  
+0              no  
+1              no  
+2              no  
+3              no  
+4              no  
+5              no  
+6              no  
+7              no  
+8              no  
+9              no  
+10             no  
+11             no  
+12             no  
+13             no  
+14             no  
+15             no  
+16             no  
+17             no  
+18             no  
+19             no  
+20             no  
+21             no  
+22             no  
+23             no  
+24             no  
+25             no  
+26             no  
+27             no  
+28             no  
+29             no  
+30             no  
+31             no  
+32             no  
+33             no  
+34             no  
+35             no  
+36             no  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analisis-exploratorio-de-los-datos-eda">
+<h2><strong>Análisis Exploratorio de los datos (EDA)</strong><a class="headerlink" href="#analisis-exploratorio-de-los-datos-eda" title="Link to this heading">#</a></h2>
+<section id="analisis-inicial">
+<h3><strong>Análisis Inicial</strong><a class="headerlink" href="#analisis-inicial" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Carga de datos</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">697</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 1.1. Análisis inicial</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Información básica:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Dimensiones: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Variables: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Valores faltantes: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Información básica:
+- Dimensiones: (4424, 37)
+- Variables: 37
+- Valores faltantes: 0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="distribucion-de-variable-objetivo-clasificacion">
+<h3><strong>Distribución de Variable Objetivo (Clasificación)</strong><a class="headerlink" href="#distribucion-de-variable-objetivo-clasificacion" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Curricular units 1st sem (grade)&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Curricular units 2nd sem (grade)&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estadísticas del promedio académico:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">,</span> <span class="s1">&#39;Target&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1">#Visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Target&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Abandono Académico&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Estado del Estudiante&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cantidad de Estudiantes&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estadísticas del promedio académico:
+count    4424.000000
+mean       10.435514
+std         4.818530
+min         0.000000
+25%        11.000000
+50%        12.250000
+75%        13.266667
+max        18.283654
+Name: Average_grade, dtype: float64
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Cantidad de Estudiantes&#39;)
+</pre></div>
+</div>
+<img alt="_images/7efa9a213f62d4682b3b62587f8c6eae602dc7523557c248368a31e298df4eba.png" src="_images/7efa9a213f62d4682b3b62587f8c6eae602dc7523557c248368a31e298df4eba.png" />
+</div>
+</div>
+</section>
+<section id="distribucion-del-promedio">
+<h3><strong>Distribución del promedio</strong><a class="headerlink" href="#distribucion-del-promedio" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_clean</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución del Promedio Académico</span><span class="se">\n</span><span class="s1">(Media: </span><span class="si">{:.2f}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mf">0.9</span><span class="p">,</span> <span class="s1">&#39;Media&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(10.535513648948914, 1204.875, &#39;Media&#39;)
+</pre></div>
+</div>
+<img alt="_images/88ba3d1303f37b23b7700ee0f0123268625127d3c3d67d73de8f96a26b2b386d.png" src="_images/88ba3d1303f37b23b7700ee0f0123268625127d3c3d67d73de8f96a26b2b386d.png" />
+</div>
+</div>
+<section id="distribucion-por-semestre">
+<h4><strong>Distribución por semestre</strong><a class="headerlink" href="#distribucion-por-semestre" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Curricular units 1st sem (grade)&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;1er Semestre&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Curricular units 2nd sem (grade)&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2do Semestre&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparación de Distribución por Semestre&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Calificación&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Densidad&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x20e855e92b0&gt;
+</pre></div>
+</div>
+<img alt="_images/ee08b9305020062fab668dd99105c639efd192f62f94cf8a2c7cb41938b88f8d.png" src="_images/ee08b9305020062fab668dd99105c639efd192f62f94cf8a2c7cb41938b88f8d.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="boxplot">
+<h3><strong>Boxplot</strong><a class="headerlink" href="#boxplot" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_clean</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Target&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Average_grade&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Set2&#39;</span><span class="p">,</span>
+           <span class="n">order</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Promedios por Estado&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Estado de Abandono&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Promedio Combinado&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Elian\AppData\Local\Temp\ipykernel_27212\4238463372.py:2: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(data=df_clean, x=&#39;Target&#39;, y=&#39;Average_grade&#39;, palette=&#39;Set2&#39;,
+</pre></div>
+</div>
+<img alt="_images/1f436f6ba4ba67b5d4e3be0a373c94665b52986c6d170e33ce5fd5d5ae29f7db.png" src="_images/1f436f6ba4ba67b5d4e3be0a373c94665b52986c6d170e33ce5fd5d5ae29f7db.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="clasificacion-de-las-variables-y-preprocesamiento">
+<h2><strong>Clasificación de las variables y preprocesamiento</strong><a class="headerlink" href="#clasificacion-de-las-variables-y-preprocesamiento" title="Link to this heading">#</a></h2>
+<p>Basado en la descripción del dataset, clasificaré las variables en categóricas y numéricas, y luego crearé un pipeline adecuado para el preprocesamiento.</p>
+<section id="clasificacion-de-variables">
+<h3><strong>Clasificación de variables</strong><a class="headerlink" href="#clasificacion-de-variables" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+
+<span class="c1"># Definición de columnas por tipo</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Marital Status&#39;</span><span class="p">,</span> <span class="s1">&#39;Application mode&#39;</span><span class="p">,</span> <span class="s1">&#39;Course&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;Daytime/evening attendance&#39;</span><span class="p">,</span> <span class="s1">&#39;Previous qualification&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Nacionality&#39;</span><span class="p">,</span> <span class="s2">&quot;Mother&#39;s qualification&quot;</span><span class="p">,</span> <span class="s2">&quot;Father&#39;s qualification&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Mother&#39;s occupation&quot;</span><span class="p">,</span> <span class="s2">&quot;Father&#39;s occupation&quot;</span><span class="p">,</span> <span class="s1">&#39;Displaced&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Educational special needs&#39;</span><span class="p">,</span> <span class="s1">&#39;Debtor&#39;</span><span class="p">,</span> <span class="s1">&#39;Tuition fees up to date&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;Scholarship holder&#39;</span><span class="p">,</span> <span class="s1">&#39;International&#39;</span>
+<span class="p">]</span>
+
+<span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Application order&#39;</span><span class="p">,</span> <span class="s1">&#39;Previous qualification (grade)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Admission grade&#39;</span><span class="p">,</span> <span class="s1">&#39;Age at enrollment&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 1st sem (credited)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 1st sem (enrolled)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 1st sem (evaluations)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 1st sem (approved)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 1st sem (grade)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 1st sem (without evaluations)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 2nd sem (credited)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 2nd sem (enrolled)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 2nd sem (evaluations)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 2nd sem (approved)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 2nd sem (grade)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Curricular units 2nd sem (without evaluations)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Unemployment rate&#39;</span><span class="p">,</span> <span class="s1">&#39;Inflation rate&#39;</span><span class="p">,</span> <span class="s1">&#39;GDP&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Transformers para cada tipo de variable</span>
+<span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">())</span>  <span class="c1"># Normalización MinMax para variables numéricas</span>
+<span class="p">])</span>
+
+<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>  <span class="c1"># OneHot para categóricas</span>
+<span class="p">])</span>
+
+<span class="c1"># Combinar transformers en un ColumnTransformer</span>
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">remainder</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span>  <span class="c1"># Ignorar cualquier otra columna no especificada</span>
+<span class="p">)</span>
+
+<span class="c1"># Pipeline completo (puedes añadir el estimador al final)</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;preprocessor&#39;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">)</span>
+    <span class="c1"># (&#39;classifier&#39;, ...)  # Aquí iría tu modelo KNN u otro</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analisis-estadistico-por-tipo-de-varibale">
+<h3><strong>Análisis estadístico por tipo de varibale</strong><a class="headerlink" href="#analisis-estadistico-por-tipo-de-varibale" title="Link to this heading">#</a></h3>
+<section id="variables-numericas">
+<h4><strong>Variables numéricas</strong><a class="headerlink" href="#variables-numericas" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estadísticas descriptivas</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">numeric_features</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="c1"># Visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">numeric_features</span><span class="p">[:</span><span class="mi">6</span><span class="p">]):</span>  <span class="c1"># Mostrar solo las primeras 6 para ejemplo</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distribución de </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       Application order  Previous qualification (grade)  Admission grade  \
+count        4424.000000                     4424.000000      4424.000000   
+mean            1.727848                      132.613314       126.978119   
+std             1.313793                       13.188332        14.482001   
+min             0.000000                       95.000000        95.000000   
+25%             1.000000                      125.000000       117.900000   
+50%             1.000000                      133.100000       126.100000   
+75%             2.000000                      140.000000       134.800000   
+max             9.000000                      190.000000       190.000000   
+
+       Age at enrollment  Curricular units 1st sem (credited)  \
+count        4424.000000                          4424.000000   
+mean           23.265145                             0.709991   
+std             7.587816                             2.360507   
+min            17.000000                             0.000000   
+25%            19.000000                             0.000000   
+50%            20.000000                             0.000000   
+75%            25.000000                             0.000000   
+max            70.000000                            20.000000   
+
+       Curricular units 1st sem (enrolled)  \
+count                          4424.000000   
+mean                              6.270570   
+std                               2.480178   
+min                               0.000000   
+25%                               5.000000   
+50%                               6.000000   
+75%                               7.000000   
+max                              26.000000   
+
+       Curricular units 1st sem (evaluations)  \
+count                             4424.000000   
+mean                                 8.299051   
+std                                  4.179106   
+min                                  0.000000   
+25%                                  6.000000   
+50%                                  8.000000   
+75%                                 10.000000   
+max                                 45.000000   
+
+       Curricular units 1st sem (approved)  Curricular units 1st sem (grade)  \
+count                          4424.000000                       4424.000000   
+mean                              4.706600                         10.640822   
+std                               3.094238                          4.843663   
+min                               0.000000                          0.000000   
+25%                               3.000000                         11.000000   
+50%                               5.000000                         12.285714   
+75%                               6.000000                         13.400000   
+max                              26.000000                         18.875000   
+
+       Curricular units 1st sem (without evaluations)  \
+count                                     4424.000000   
+mean                                         0.137658   
+std                                          0.690880   
+min                                          0.000000   
+25%                                          0.000000   
+50%                                          0.000000   
+75%                                          0.000000   
+max                                         12.000000   
+
+       Curricular units 2nd sem (credited)  \
+count                          4424.000000   
+mean                              0.541817   
+std                               1.918546   
+min                               0.000000   
+25%                               0.000000   
+50%                               0.000000   
+75%                               0.000000   
+max                              19.000000   
+
+       Curricular units 2nd sem (enrolled)  \
+count                          4424.000000   
+mean                              6.232143   
+std                               2.195951   
+min                               0.000000   
+25%                               5.000000   
+50%                               6.000000   
+75%                               7.000000   
+max                              23.000000   
+
+       Curricular units 2nd sem (evaluations)  \
+count                             4424.000000   
+mean                                 8.063291   
+std                                  3.947951   
+min                                  0.000000   
+25%                                  6.000000   
+50%                                  8.000000   
+75%                                 10.000000   
+max                                 33.000000   
+
+       Curricular units 2nd sem (approved)  Curricular units 2nd sem (grade)  \
+count                          4424.000000                       4424.000000   
+mean                              4.435805                         10.230206   
+std                               3.014764                          5.210808   
+min                               0.000000                          0.000000   
+25%                               2.000000                         10.750000   
+50%                               5.000000                         12.200000   
+75%                               6.000000                         13.333333   
+max                              20.000000                         18.571429   
+
+       Curricular units 2nd sem (without evaluations)  Unemployment rate  \
+count                                     4424.000000        4424.000000   
+mean                                         0.150316          11.566139   
+std                                          0.753774           2.663850   
+min                                          0.000000           7.600000   
+25%                                          0.000000           9.400000   
+50%                                          0.000000          11.100000   
+75%                                          0.000000          13.900000   
+max                                         12.000000          16.200000   
+
+       Inflation rate          GDP  
+count     4424.000000  4424.000000  
+mean         1.228029     0.001969  
+std          1.382711     2.269935  
+min         -0.800000    -4.060000  
+25%          0.300000    -1.700000  
+50%          1.400000     0.320000  
+75%          2.600000     1.790000  
+max          3.700000     3.510000  
+</pre></div>
+</div>
+<img alt="_images/fadba2f265ee04dee113c5be987a26ca4658f1ff52336bf7b87709ec6951e85e.png" src="_images/fadba2f265ee04dee113c5be987a26ca4658f1ff52336bf7b87709ec6951e85e.png" />
+</div>
+</div>
+</section>
+<section id="variables-categoricas">
+<h4><strong>Variables categóricas</strong><a class="headerlink" href="#variables-categoricas" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Frecuencias y visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">[:</span><span class="mi">6</span><span class="p">]):</span>  <span class="c1"># Mostrar solo las primeras 6 para ejemplo</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distribución de </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/267213683a58b1d4d67734823f83cd284df00006ebea5f81c6a01fe8b220f3cf.png" src="_images/267213683a58b1d4d67734823f83cd284df00006ebea5f81c6a01fe8b220f3cf.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Predicción del riesgo de abandono académico en estudiantes universitarios</strong></p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo"><strong>Objetivo</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias"><strong>Librerías</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-los-datos"><strong>Importación de los datos</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-los-datos-eda"><strong>Análisis Exploratorio de los datos (EDA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-inicial"><strong>Análisis Inicial</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-variable-objetivo-clasificacion"><strong>Distribución de Variable Objetivo (Clasificación)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-del-promedio"><strong>Distribución del promedio</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-por-semestre"><strong>Distribución por semestre</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boxplot"><strong>Boxplot</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-las-variables-y-preprocesamiento"><strong>Clasificación de las variables y preprocesamiento</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-variables"><strong>Clasificación de variables</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-estadistico-por-tipo-de-varibale"><strong>Análisis estadístico por tipo de varibale</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas"><strong>Variables numéricas</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas"><strong>Variables categóricas</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
