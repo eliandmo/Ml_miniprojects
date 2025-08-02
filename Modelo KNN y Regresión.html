@@ -180,6 +180,9 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Carga y Exploración de Datos</strong></a></li>
+
+
+
 </ul>
 
     </div>
@@ -375,6 +378,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Carga y Exploración de Datos</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo"><strong>Objetivo</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias"><strong>Librerías</strong></a></li>
@@ -399,6 +403,29 @@ document.write(`
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-completa-del-modelo-knn"><strong>Implementación completa del modelo KNN</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#division-de-los-datos"><strong>División de los datos</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-para-clasificacion"><strong>KNN para clasificación</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-y-evaluacion"><strong>Entrenamiento y Evaluación</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-con-diferentes-modelos-de-k"><strong>Evaluación con diferentes modelos de <em>k</em></strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-para-regresion"><strong>KNN para Regresión</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Entrenamiento y evaluación</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Evaluación con diferentes modelos de <em>k</em></strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-de-resultados"><strong>Documentación de resultados</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#para-clasificacion"><strong>Para clasificación</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#para-regresion"><strong>Para Regresión</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones"><strong>Conclusiones</strong></a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -702,7 +729,7 @@ Name: Average_grade, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x20e855e92b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x293d12a52b0&gt;
 </pre></div>
 </div>
 <img alt="_images/ee08b9305020062fab668dd99105c639efd192f62f94cf8a2c7cb41938b88f8d.png" src="_images/ee08b9305020062fab668dd99105c639efd192f62f94cf8a2c7cb41938b88f8d.png" />
@@ -727,7 +754,7 @@ Name: Average_grade, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Elian\AppData\Local\Temp\ipykernel_27212\4238463372.py:2: FutureWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Elian\AppData\Local\Temp\ipykernel_38956\4238463372.py:2: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
@@ -976,6 +1003,285 @@ max          3.700000     3.510000
 </section>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="implementacion-completa-del-modelo-knn">
+<h1><strong>Implementación completa del modelo KNN</strong><a class="headerlink" href="#implementacion-completa-del-modelo-knn" title="Link to this heading">#</a></h1>
+<section id="division-de-los-datos">
+<h2><strong>División de los datos</strong><a class="headerlink" href="#division-de-los-datos" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># Definir variables (ajustar según tus nombres de columnas exactos)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Target&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Features</span>
+<span class="n">y_class</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span>  <span class="c1"># Clasificación</span>
+<span class="n">y_reg</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Curricular units 2nd sem (grade)&#39;</span><span class="p">]</span>  <span class="c1"># Regresión</span>
+
+<span class="c1"># División para clasificación (70% train, 30% test)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_class_train</span><span class="p">,</span> <span class="n">y_class_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y_class</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_class</span><span class="p">)</span>
+
+<span class="c1"># División para regresión (mismos splits para consistencia)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">y_reg_train</span><span class="p">,</span> <span class="n">y_reg_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y_reg</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tamaño del conjunto de entrenamiento: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> muestras&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tamaño del conjunto de prueba: </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> muestras&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tamaño del conjunto de entrenamiento: 3096 muestras
+Tamaño del conjunto de prueba: 1328 muestras
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="knn-para-clasificacion">
+<h2><strong>KNN para clasificación</strong><a class="headerlink" href="#knn-para-clasificacion" title="Link to this heading">#</a></h2>
+<section id="entrenamiento-y-evaluacion">
+<h3><strong>Entrenamiento y Evaluación</strong><a class="headerlink" href="#entrenamiento-y-evaluacion" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> 
+                           <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span><span class="p">,</span> <span class="n">RocCurveDisplay</span><span class="p">)</span>
+
+<span class="c1"># Crear y entrenar modelo (usando k=5 como ejemplo)</span>
+<span class="n">knn_class</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">knn_class</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">y_class_train</span><span class="p">)</span>
+
+<span class="c1"># Predecir en test</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">knn_class</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+<span class="n">y_proba</span> <span class="o">=</span> <span class="n">knn_class</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+
+<span class="c1"># Métricas</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Classification Report:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_class_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+
+<span class="c1"># Matriz de Confusión</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_class_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> 
+            <span class="n">xticklabels</span><span class="o">=</span><span class="n">knn_class</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">knn_class</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Matriz de Confusión&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicho&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Real&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Curva ROC (para clasificación multiclase)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">class_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">knn_class</span><span class="o">.</span><span class="n">classes_</span><span class="p">):</span>
+    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_class_test</span> <span class="o">==</span> <span class="n">class_label</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span>
+    <span class="n">roc_auc</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">class_label</span><span class="si">}</span><span class="s1"> (AUC = </span><span class="si">{</span><span class="n">roc_auc</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Curvas ROC por Clase&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
+              precision    recall  f1-score   support
+
+     Dropout       0.66      0.56      0.60       427
+    Enrolled       0.31      0.24      0.27       238
+    Graduate       0.66      0.77      0.71       663
+
+    accuracy                           0.61      1328
+   macro avg       0.54      0.52      0.53      1328
+weighted avg       0.60      0.61      0.60      1328
+</pre></div>
+</div>
+<img alt="_images/303ed50690ac04e22abab02a5eb8a6bfc081a6b12fc9a3f20a4f30cb93eecc96.png" src="_images/303ed50690ac04e22abab02a5eb8a6bfc081a6b12fc9a3f20a4f30cb93eecc96.png" />
+<img alt="_images/1746af7919f07bd61acea8f7a30eb2c8b376fdbf80ee5feedbff598b6f8edaac.png" src="_images/1746af7919f07bd61acea8f7a30eb2c8b376fdbf80ee5feedbff598b6f8edaac.png" />
+</div>
+</div>
+</section>
+<section id="evaluacion-con-diferentes-modelos-de-k">
+<h3><strong>Evaluación con diferentes modelos de <em>k</em></strong><a class="headerlink" href="#evaluacion-con-diferentes-modelos-de-k" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">k_values</span><span class="p">:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">y_class_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_class_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">output_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;accuracy&#39;</span><span class="p">:</span> <span class="n">report</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;macro_avg_f1&#39;</span><span class="p">:</span> <span class="n">report</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;f1-score&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+
+<span class="c1"># Visualización</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">results_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Desempeño por Valor de k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Valor de k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Puntuación&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/be51d66a9cfe05405fdaaa7c4e7b93744d41201a7ad69a343a01d04358f4ffc4.png" src="_images/be51d66a9cfe05405fdaaa7c4e7b93744d41201a7ad69a343a01d04358f4ffc4.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="knn-para-regresion">
+<h2><strong>KNN para Regresión</strong><a class="headerlink" href="#knn-para-regresion" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3><strong>Entrenamiento y evaluación</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+
+<span class="c1"># Crear y entrenar modelo (k=5 como ejemplo)</span>
+<span class="n">knn_reg</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">knn_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">y_reg_train</span><span class="p">)</span>
+
+<span class="c1"># Predecir</span>
+<span class="n">y_pred_reg</span> <span class="o">=</span> <span class="n">knn_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+
+<span class="c1"># Métricas</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Métricas de Regresión:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MAE: </span><span class="si">{</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_reg_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred_reg</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMSE: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_reg_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred_reg</span><span class="p">))</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R²: </span><span class="si">{</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_reg_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred_reg</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Gráfico de predicciones vs reales</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_reg_test</span><span class="p">,</span> <span class="n">y_pred_reg</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">y_reg_test</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y_reg_test</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> 
+         <span class="p">[</span><span class="n">y_reg_test</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y_reg_test</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Valores Reales&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicciones&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Predicciones vs Valores Reales&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Gráfico de residuos</span>
+<span class="n">residuals</span> <span class="o">=</span> <span class="n">y_reg_test</span> <span class="o">-</span> <span class="n">y_pred_reg</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_pred_reg</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicciones&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residuos&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Análisis de Residuos&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Métricas de Regresión:
+MAE: 4.34
+RMSE: 5.74
+R²: -0.20
+</pre></div>
+</div>
+<img alt="_images/c254b7eec27aa0d2b0cac9e2270fbe616bb3d307e71860da8ecc94848e191089.png" src="_images/c254b7eec27aa0d2b0cac9e2270fbe616bb3d307e71860da8ecc94848e191089.png" />
+<img alt="_images/d3f2dc566d681b534f7fa2076e536bd9de998c81cda52959df0a56e1b51c6d3a.png" src="_images/d3f2dc566d681b534f7fa2076e536bd9de998c81cda52959df0a56e1b51c6d3a.png" />
+</div>
+</div>
+</section>
+<section id="id2">
+<h3><strong>Evaluación con diferentes modelos de <em>k</em></strong><a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">k_values</span><span class="p">:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">y_reg_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+    <span class="n">reg_results</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;MAE&#39;</span><span class="p">:</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_reg_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">),</span>
+        <span class="s1">&#39;RMSE&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_reg_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)),</span>
+        <span class="s1">&#39;R2&#39;</span><span class="p">:</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_reg_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="c1"># Visualización</span>
+<span class="n">reg_results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">reg_results</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;MAE&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE&#39;</span><span class="p">,</span> <span class="s1">&#39;R2&#39;</span><span class="p">]):</span>
+    <span class="n">reg_results_df</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">metric</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Valor de k&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c786f11132b549acd23d2a4e52ce06d5a3d69742f769c1bed9c7639f383b90fd.png" src="_images/c786f11132b549acd23d2a4e52ce06d5a3d69742f769c1bed9c7639f383b90fd.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="documentacion-de-resultados">
+<h1><strong>Documentación de resultados</strong><a class="headerlink" href="#documentacion-de-resultados" title="Link to this heading">#</a></h1>
+<section id="para-clasificacion">
+<h2><strong>Para clasificación</strong><a class="headerlink" href="#para-clasificacion" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resumen de Clasificación:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mejor k: </span><span class="si">{</span><span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span><span class="si">}</span><span class="s2"> con accuracy </span><span class="si">{</span><span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Matriz de Confusión óptima:&quot;</span><span class="p">)</span>
+<span class="n">best_k_class</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<span class="n">best_model</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">best_k_class</span><span class="p">)</span>
+<span class="n">best_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">y_class_train</span><span class="p">)</span>
+<span class="n">y_pred_best</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_class_test</span><span class="p">,</span> <span class="n">y_pred_best</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resumen de Clasificación:
+Mejor k: 9 con accuracy 0.623
+
+Matriz de Confusión óptima:
+[[229  47 151]
+ [ 41  35 162]
+ [ 51  48 564]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="para-regresion">
+<h2><strong>Para Regresión</strong><a class="headerlink" href="#para-regresion" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Resumen de Regresión:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mejor k: </span><span class="si">{</span><span class="n">reg_results_df</span><span class="p">[</span><span class="s1">&#39;R2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span><span class="si">}</span><span class="s2"> con R² </span><span class="si">{</span><span class="n">reg_results_df</span><span class="p">[</span><span class="s1">&#39;R2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Menor RMSE: </span><span class="si">{</span><span class="n">reg_results_df</span><span class="p">[</span><span class="s1">&#39;RMSE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> con k=</span><span class="si">{</span><span class="n">reg_results_df</span><span class="p">[</span><span class="s1">&#39;RMSE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resumen de Regresión:
+Mejor k: 11 con R² -0.101
+Menor RMSE: 5.491 con k=11
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conclusiones">
+<h1><strong>Conclusiones</strong><a class="headerlink" href="#conclusiones" title="Link to this heading">#</a></h1>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1032,6 +1338,7 @@ max          3.700000     3.510000
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Carga y Exploración de Datos</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo"><strong>Objetivo</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias"><strong>Librerías</strong></a></li>
@@ -1056,6 +1363,29 @@ max          3.700000     3.510000
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-completa-del-modelo-knn"><strong>Implementación completa del modelo KNN</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#division-de-los-datos"><strong>División de los datos</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-para-clasificacion"><strong>KNN para clasificación</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-y-evaluacion"><strong>Entrenamiento y Evaluación</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-con-diferentes-modelos-de-k"><strong>Evaluación con diferentes modelos de <em>k</em></strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-para-regresion"><strong>KNN para Regresión</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Entrenamiento y evaluación</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Evaluación con diferentes modelos de <em>k</em></strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-de-resultados"><strong>Documentación de resultados</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#para-clasificacion"><strong>Para clasificación</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#para-regresion"><strong>Para Regresión</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones"><strong>Conclusiones</strong></a></li>
+</ul>
+
   </nav></div>
 
 </div></div>
