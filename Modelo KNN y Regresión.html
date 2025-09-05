@@ -1487,6 +1487,10 @@ R²: 0.2626
 <img alt="_images/edcc1fcda5ef06ea4423fed4bf70f2ca544704a1897e724d68d589e591fa1e89.png" src="_images/edcc1fcda5ef06ea4423fed4bf70f2ca544704a1897e724d68d589e591fa1e89.png" />
 </div>
 </div>
+<p>A medida que aumenta el valor de k, el MAE y RMSE disminuyen, lo que indica una mejora en la precisión de las predicciones.</p>
+<p>El R² crece de 0.08 (k=3) a 0.26 (k=20), mostrando que el modelo logra explicar una mayor proporción de la variabilidad del promedio académico, aunque sigue siendo limitada.</p>
+<p>El mejor desempeño se observa en k=20, con MAE = 2.77, RMSE = 4.12 y R² = 0.26, lo que representa predicciones más cercanas al promedio real en comparación con valores bajos de k.</p>
+<p>Sin embargo, el nivel de ajuste es modesto: el modelo capta algunas tendencias generales, pero no logra predecir con gran exactitud casos individuales.</p>
 </section>
 <section id="seleccion-del-modelo">
 <h3><strong>Selección del modelo</strong><a class="headerlink" href="#seleccion-del-modelo" title="Link to this heading">#</a></h3>
@@ -2446,6 +2450,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 });
 </script></body></div></div>
 </div>
+<p>El mejor desempeño se alcanzó con k = 20, obteniendo un RMSE de 4.12 y un R² de 0.26. Esto significa que el modelo logra reducir los errores de predicción respecto a valores más bajos de k y explica aproximadamente el 26% de la variabilidad del promedio académico.</p>
+<p>Aunque la capacidad predictiva es moderada, este resultado indica que el KNN captura algunas tendencias en el desempeño estudiantil, pero no logra modelar con alta precisión los valores individuales.</p>
 </section>
 <section id="interpretacion">
 <h3><strong>Interpretación</strong><a class="headerlink" href="#interpretacion" title="Link to this heading">#</a></h3>
